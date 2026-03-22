@@ -1,1 +1,64 @@
 
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>WA Bulk Dashboard</title>
+
+<style>
+
+body{
+font-family:Arial;
+padding:40px;
+}
+
+.card{
+border:1px solid #ccc;
+padding:20px;
+display:inline-block;
+margin:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>WhatsApp Bulk Platform</h1>
+
+<div class="card">
+
+<h2>Total Sent</h2>
+<h3 id="sent">0</h3>
+
+</div>
+
+<div class="card">
+
+<h2>Total Failed</h2>
+<h3 id="failed">0</h3>
+
+</div>
+
+<script>
+
+async function load(){
+
+const res = await fetch("/api/report")
+const data = await res.json()
+
+document.getElementById("sent").innerText=data.sent
+document.getElementById("failed").innerText=data.failed
+
+}
+
+setInterval(load,3000)
+load()
+
+</script>
+
+</body>
+
+</html>
